@@ -62,7 +62,7 @@ function NavigationBar() {
             {/* Dropdown menu  */}
             {isUserMenuOpen && 
             <div
-              class="z-auto absolute top-16 right-4  my-4 text-base list-none bg-[#15616D] divide-y divide-gray-100 rounded-lg shadow dark:bg-[#15616D] dark:divide-gray-600"
+              class="z-50 absolute top-16 right-4  my-4 text-base list-none bg-[#15616D] divide-y divide-gray-100 rounded-lg shadow dark:bg-[#15616D] dark:divide-gray-600"
               id="user-dropdown"
             >
               <div class="px-4 py-3">
@@ -142,7 +142,7 @@ function NavigationBar() {
           {/* Dropdown */}
           {isMainMenuOpen && 
           <div
-            class="items-end absolute top-14 translate-x-10 right-5 justify-end w-full p-2 md:hidden md:order-1 ml-auto mr-5"
+            class="z-50 items-end absolute top-14 translate-x-10 right-5 justify-end w-full p-2 md:hidden md:order-1 ml-auto mr-5"
             id='navbar-user'
           >
             <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-[#15616D] rounded-lg bg-[#15616D] md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-[#15616D] dark:bg-gray-800 md:dark:bg-[#15616D] dark:border-gray-700">
