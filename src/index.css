@@ -18,3 +18,7 @@ body{
     background: #0c353b;
     border-radius: 10px;
 }
+
+.slick-slide > div {
+    margin: 0 10px;
+}
