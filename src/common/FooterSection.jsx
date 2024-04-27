@@ -6,12 +6,12 @@ import logo from '../assets/navigation_bar_asserts/brand_logo.png'
 
 function FooterSection() {
     return (
-        <div className="mt-10 ">
+        <div className="mt-10">
             <Footer container className="bg-[#0e4047]">
                 <div className="w-full">
                     <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
-                    <div>
-                        <img src={logo} alt="brand logo" className="w-48 rounded-lg"/>
+                    <div className="rounded-lg">
+                        <img src={logo} alt="brand logo" className="w-48 p-5"/>
                     </div>
                     <div className="grid grid-cols-2 gap-8 sm:mt-4 sm:grid-cols-3 sm:gap-6">
                         <div>
