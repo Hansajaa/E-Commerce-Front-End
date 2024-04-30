@@ -1,6 +1,30 @@
+import { useForm } from "react-hook-form";
 import registerImage from "../assets/login_page_asserts/login_page_side_image.jpg";
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function RegisterPage(props) {
+    const {register, handleSubmit, getValues, formState: {errors}} = useForm();
+
+    const onSubmit = (data) => {
+        console.log(data);
+    }
+
+    const [username, setUsername] = useState();
+    const [isExistsUsername, setIsExistsUsername] = useState(false);
+
+    useEffect(()=>{
+        axios.post(`http://localhost:8080/api/v1/user/check-username/${username}`)
+        .then(function(response){
+            console.log(response.data);
+            setIsExistsUsername(response.data);
+        })
+        .catch(function(error){
+            console.log(error);
+        })
+    },[username])
+
     return (
         <div>
             <section className="bg-gray-50 min-h-screen flex items-center justify-center">
@@ -14,20 +38,44 @@ function RegisterPage(props) {
                     Welcome to Clothify Store
                     </p>
 
-                    <form action="" className="flex flex-col p-3 gap-4">
-                        <input className="p-2 rounded-xl focus:border-blue-700 focus:ring-blue-700" type="email" placeholder="Username" />
-                        <input className="p-2  rounded-xl focus:border-blue-700 focus:ring-blue-700" type="number" placeholder="Contact Number" />
-                        <input className="p-2 rounded-xl focus:border-blue-700 focus:ring-blue-700" type="text" placeholder="E-mail" />
-                        <input className="p-2 rounded-xl focus:border-blue-700 focus:ring-blue-700" type="text" placeholder="Address" />
+                    <form action="" className="flex flex-col p-3 gap-4" noValidate>
+                        <input className="p-2 rounded-xl focus:border-blue-700 focus:ring-blue-700" type="text" placeholder="* Username" {...register("username", {required: true})} onKeyUp={()=>{
+                            const userName = getValues("username");
+                            setUsername(userName);
+                        }}/>
+                        {isExistsUsername && <span className="-mt-3 text-[red] text-xs">Username is Already taken</span>}
+                        <input className="p-2  rounded-xl focus:border-blue-700 focus:ring-blue-700" type="number" placeholder="* Contact Number" {...register("contactNumber", {required:true})}/>
+                        <input className="p-2 rounded-xl focus:border-blue-700 focus:ring-blue-700" type="email" placeholder="E-mail" {...register("email", { 
+                            required: {
+                                value:true,
+                                message:"* Email is required"
+                            }, 
+                            pattern: {
+                                value:/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+                                message:"Invalid email"
+                            }
+                        })}/>
+                        <span className="-mt-3 text-xs text-[red]">{errors.email?.message}</span>
+                        <input className="p-2 rounded-xl focus:border-blue-700 focus:ring-blue-700" type="text" placeholder="* Address" {...register("address", {required:true})}/>
                         
                         <div className="relative">
-                            <input className="p-2 rounded-xl w-full" type="password" placeholder="Password" />
+                            <input className="p-2 rounded-xl w-full" type="password" placeholder="Password" {...register("password", {
+                                required:{
+                                    value:true,
+                                    message:"* Password is required"
+                                }, 
+                                pattern:{
+                                    value:/^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/,
+                                    message:"Requires a minimum of 8 characters *[a-z], *[A-Z], *[!@#$%^&*]"
+                                }
+                             })}/>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" className="bi bi-eye absolute top-1/2 right-3 -translate-y-2" viewBox="0 0 16 16">
                                 <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
                                 <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
                             </svg>
                         </div>
-                        <button className="bg-[#17396d] py-2 rounded-xl text-white hover:scale-105 duration-300">Sign Up</button>
+                        <span className="-mt-3 text-xs text-[red]">{errors.password?.message}</span>
+                        <button className="bg-[#17396d] py-2 rounded-xl text-white hover:scale-105 duration-300" onClick={handleSubmit(onSubmit)}>Sign Up</button>
                     </form>
 
                     <div className="grid grid-cols-3 text-gray-400 mt-5 w-5/6 ml-7">
@@ -47,7 +95,7 @@ function RegisterPage(props) {
 
                     <div className="flex justify-between text-sm item-center mt-4">
                         <p className="mt-2">You Already Have an account? </p>
-                        <button className="bg-white px-5 py-2 border rounded-xl mb-3 mr-4 hover:scale-110 duration-300">Login</button>
+                        <Link to={"/login"} className="bg-white px-5 py-2 border rounded-xl mb-3 mr-4 hover:scale-110 duration-300">Login</Link>
                     </div>
                     
                 </div>
