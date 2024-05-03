@@ -1,14 +1,42 @@
 import { useForm } from "react-hook-form";
 import registerImage from "../assets/login_page_asserts/login_page_side_image.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 function RegisterPage(props) {
-    const {register, handleSubmit, getValues, formState: {errors}} = useForm();
+
+    let navigate = useNavigate();
+
+    const {register, handleSubmit, reset, getValues, formState: {errors}} = useForm();
 
     const onSubmit = (data) => {
-        console.log(data);
+        saveUser(data);
+    }
+
+    function saveUser(user){
+        axios.post('http://localhost:8080/api/v1/user/add', user)
+        .then(function (response){
+            if(response !== null){
+                reset();
+                successAlert(response.data);
+            }
+        })
+        .catch(function(error){
+            console.log(error);
+        })
+    }
+
+    function successAlert(response){
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `You're Successfully Registered ${response.username}`,
+            showConfirmButton: false,
+            timer: 1500
+        });
+        navigate("/login");
     }
 
     const [username, setUsername] = useState();
