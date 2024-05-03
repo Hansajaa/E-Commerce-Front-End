@@ -6,7 +6,10 @@ import Footer from '../common/FooterSection'
 function MenCategorySection(props) {
     return (
         <div>
+            
             <NavigationBar></NavigationBar>
+
+            <p className='text-white translate-y-32 ml-20 font-bold text-xl'>Men's</p>
             <CardCarousel></CardCarousel>
             <CardCarousel></CardCarousel>
 
