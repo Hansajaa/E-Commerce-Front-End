@@ -31,8 +31,9 @@ function MenCategorySection(props) {
                 
             </div>
 
-
-            <Footer></Footer>
+            <div className='p-3'>
+                <Footer></Footer>
+            </div>
         </div>
     );
 }
