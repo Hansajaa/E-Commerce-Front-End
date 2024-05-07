@@ -46,7 +46,9 @@ function CardCarousel() {
             <div className='mt-20'>
                 <Slider {...settings}>
                     {data.map((d) => (
-                        <ItemCard></ItemCard>
+                        <div key={d.name}>
+                            <ItemCard></ItemCard>
+                        </div>
                     ))}
                 </Slider>
             </div>
