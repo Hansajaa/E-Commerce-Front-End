@@ -8,15 +8,31 @@ import verifyImg from '../assets/home_page_asserts/verify.png'
 import satisfiedImg from '../assets/home_page_asserts/satified.png'
 import newArrivalImg from '../assets/home_page_asserts/new arrival.png'
 import shippingImg from '../assets/home_page_asserts/shipping.png'
-import ItemCard from '../molecules/ItemCard';
 import CardCarousel from '../organisms/CardCarousel';
+import Footer from '../common/FooterSection';
+import { useState, useRef } from 'react';
 
 function HomePage() {
-    return (
-        <>
-            <Navigation></Navigation>
 
-            <div className="h-56 sm:h-64 xl:h-96 2xl:h-96 mt-10 m-3">
+    const [dropdownState, setDropdownState] = useState(false);
+
+    const handleClick = () => {
+        setDropdownState(!dropdownState);
+    }
+
+    const inputRef = useRef();
+
+    const handleSubscribeButton = () => {
+        if(inputRef.current.value == ""){
+            inputRef.current.focus();
+        }
+    }
+
+    return (
+        <div>
+            <Navigation dropdownState={dropdownState}></Navigation>
+
+            <div className="h-56 sm:h-64 xl:h-96 2xl:h-96 mt-10 m-3" onClick={handleClick}>
 
                 <Carousel>
                     <div className="flex h-full items-center justify-center">
@@ -112,11 +128,31 @@ function HomePage() {
 
                 <CardCarousel></CardCarousel>
 
+                <div className='text-center'>
+                    <h1 className='text-white font-semibold  text-xl'>
+                        Subscribe to our newsletter to <br/>get updates to our latest collection
+                    </h1>
+
+                    <div className='flex mt-10 items-center justify-center'>
+                        <div className='flex flex-row'>
+                            <div className='flex-col'>
+                                <input type="email" className='rounded-lg mr-3 w-72' ref={inputRef}/>
+                            </div>
+                            <div className='flex-col text-white'>
+                                <button className='bg-[#0e4047] py-2 px-6 rounded-md hover:scale-105 duration-500' onClick={handleSubscribeButton}>Subscribe</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+                <Footer></Footer>
                 
                 
 
             </div>
-        </>
+        </div>
         
     );
 }
