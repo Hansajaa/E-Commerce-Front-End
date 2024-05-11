@@ -1,7 +1,7 @@
 "use client";
 
 import { Footer } from "flowbite-react";
-import { BsDribbble, BsFacebook, BsGithub, BsInstagram, BsTwitter } from "react-icons/bs";
+import {  BsFacebook, BsInstagram, BsTwitter } from "react-icons/bs";
 import logo from '../assets/navigation_bar_asserts/brand_logo.png'
 
 function FooterSection() {
