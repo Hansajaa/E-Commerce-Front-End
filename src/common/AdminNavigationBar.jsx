@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import user_icon from "../assets/navigation_bar_asserts/user_img.png";
 import { Link } from "react-router-dom";
 
-function AdminNavigationBar() {
+function AdminNavigationBar(dropDownState) {
+
   const [isUserMenuOpen, setUserMenu] = useState(false);
   const [isMainMenuOpen, setMainMenu] = useState(false);
 
@@ -15,6 +16,11 @@ function AdminNavigationBar() {
     setUserMenu(!isUserMenuOpen);
     setMainMenu(false);
   }
+
+  useEffect(()=>{
+      setUserMenu(false);
+      setMainMenu(false);
+  },[dropDownState])
 
   return (
     <div>
