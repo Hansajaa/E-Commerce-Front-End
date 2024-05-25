@@ -7,6 +7,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import WomenCategorySection from './components/WomenCategorySection'
 import ItemAddPage from './components/ItemAddPage'
 import BabyCategorySection from './components/BabyCategorySection'
+import KidsCategorySection from './components/KidsCategorySection'
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
           <Route path='womenCategory' element={<WomenCategorySection></WomenCategorySection>}></Route>
           <Route path='addItem' element={<ItemAddPage></ItemAddPage>}></Route>
           <Route path='babyCategory' element={<BabyCategorySection></BabyCategorySection>}></Route>
+          <Route path='kidsCategory' element={<KidsCategorySection></KidsCategorySection>}></Route>
       </Routes>
     </BrowserRouter>
   )

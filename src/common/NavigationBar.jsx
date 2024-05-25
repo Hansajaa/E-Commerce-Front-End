@@ -260,12 +260,12 @@ function NavigationBar(dropdownState) {
                     </Link>
                   </li>
                   <li>
-                    <a
-                      href="#"
+                    <Link
+                      to={"/kidsCategory"}
                       className="block py-2 px-3 text-white rounded hover:bg-[#0e4047]  dark:text-white  dark:hover:bg-gray-700 dark:hover:text-white  dark:border-gray-700"
                     >
                       Kids
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
