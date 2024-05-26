@@ -10,11 +10,15 @@ import newArrivalImg from '../assets/home_page_asserts/new arrival.png'
 import shippingImg from '../assets/home_page_asserts/shipping.png'
 import CardCarousel from '../organisms/CardCarousel';
 import Footer from '../common/FooterSection';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import axios from 'axios';
 
 function HomePage() {
 
+    const menProductApiUrl = "http://localhost:8081/api/v1/product/getProducts/men";
+
     const [dropdownState, setDropdownState] = useState(false);
+    const [products, setProducts] = useState([]);
 
     const handleClick = () => {
         setDropdownState(!dropdownState);
@@ -27,6 +31,16 @@ function HomePage() {
             inputRef.current.focus();
         }
     }
+
+    useEffect(()=>{
+        axios.get(`${menProductApiUrl}`)
+        .then((res)=>{
+            setProducts(res.data);
+        })
+        .catch((err)=>{
+            console.error(err);
+        })
+    },[])
 
     return (
         <div>
@@ -126,7 +140,7 @@ function HomePage() {
 
                 </div> */}
 
-                <CardCarousel></CardCarousel>
+                <CardCarousel products={products}></CardCarousel>
 
                 <div className='text-center'>
                     <h1 className='text-white font-semibold  text-xl'>
