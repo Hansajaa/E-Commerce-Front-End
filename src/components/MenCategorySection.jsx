@@ -9,7 +9,8 @@ function MenCategorySection(props) {
     const menProductApiUrl = "http://localhost:8081/api/v1/product/getProducts/men";
     
     const [dropdownState, setDropdownState] = useState(false);
-    
+    const [productsGroupOne, setProductsGroupOne] = useState([]);
+    const [productsGroupTwo, setProductsGroupTwo] = useState([]);
 
     const handleClick = () => {
         setDropdownState(!dropdownState);
@@ -23,6 +24,32 @@ function MenCategorySection(props) {
         }
     }
 
+
+    useEffect(()=>{
+        axios.get(`${menProductApiUrl}`)
+        .then((res)=>{
+            const lengthOfProductArray = res.data.length;
+            const marginOfArray = Math.floor(lengthOfProductArray/2);
+            
+            let groupOne = [];
+            let groupTwo = [];
+
+            for(let i = 0; i < marginOfArray; i++){
+                groupOne.push(res.data[i]);
+            }
+
+            for(let j = marginOfArray; j < lengthOfProductArray; j++){
+                groupTwo.push(res.data[j]);
+            }
+
+            setProductsGroupOne(groupOne);
+            setProductsGroupTwo(groupTwo);
+        })
+        .catch((err)=>{
+            console.error(err);
+        })
+    },[])
+
     return (
         <React.Fragment>
             
@@ -31,8 +58,8 @@ function MenCategorySection(props) {
             <div onClick={handleClick}>
                 <p className='text-white translate-y-32 ml-20 font-bold text-xl'>Men's</p>
                 
-                <CardCarousel ProductApiUrl={menProductApiUrl}/>
-                <CardCarousel ProductApiUrl={menProductApiUrl}/>
+                <CardCarousel products={productsGroupOne}/>
+                <CardCarousel products={productsGroupTwo}/>
 
                 <div className='text-center'>
                     <h1 className='text-white font-semibold  text-xl'>

@@ -75,7 +75,7 @@ function ItemAddPage(props) {
     }
 
     return (
-        <div>
+        <React.Fragment>
             <AdminNavigationBar dropDownState={dropDownState}></AdminNavigationBar>
             <div className='flex' onClick={handleState}>
 
@@ -170,7 +170,7 @@ function ItemAddPage(props) {
                     
                 </div>
             </div>
-        </div>
+        </React.Fragment>
     );
 }
 
