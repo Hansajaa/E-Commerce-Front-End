@@ -1,11 +1,16 @@
-import React,{useState, useRef} from 'react';
+import React,{useState, useRef, useEffect} from 'react';
 import NavigationBar from '../common/NavigationBar'
 import CardCarousel from '../organisms/CardCarousel';
 import Footer from '../common/FooterSection';
+import axios from 'axios';
 
 function WomenCategorySection(props) {
+
+    const womenProductApiUrl = "http://localhost:8081/api/v1/product/getProducts/women";
     
     const [dropdownState, setDropdownState] = useState(false);
+    const [productsGroupOne, setProductsGroupOne] = useState([]);
+    const [productsGroupTwo, setProductsGroupTwo] = useState([]);
 
     const handleClick = () => {
         setDropdownState(!dropdownState);
@@ -19,6 +24,31 @@ function WomenCategorySection(props) {
         }
     }
 
+    useEffect(()=>{
+        axios.get(`${womenProductApiUrl}`)
+        .then((res)=>{
+            const lengthOfProductArray = res.data.length;
+            const marginOfArray = Math.floor(lengthOfProductArray/2);
+            
+            let groupOne = [];
+            let groupTwo = [];
+
+            for(let i = 0; i < marginOfArray; i++){
+                groupOne.push(res.data[i]);
+            }
+
+            for(let j = marginOfArray; j < lengthOfProductArray; j++){
+                groupTwo.push(res.data[j]);
+            }
+
+            setProductsGroupOne(groupOne);
+            setProductsGroupTwo(groupTwo);
+        })
+        .catch((err)=>{
+            console.error(err);
+        })
+    },[])
+
     return (
         <div>
             
@@ -26,8 +56,8 @@ function WomenCategorySection(props) {
 
             <div onClick={handleClick}>
                 <p className='text-white translate-y-32 ml-20 font-bold text-xl'>Women's</p>
-                <CardCarousel></CardCarousel>
-                <CardCarousel></CardCarousel>
+                <CardCarousel products={productsGroupOne}></CardCarousel>
+                <CardCarousel products={productsGroupTwo}></CardCarousel>
 
                 <div className='text-center'>
                     <h1 className='text-white font-semibold  text-xl'>
