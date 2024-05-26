@@ -63,7 +63,7 @@ function RegisterPage(props) {
                 <div className="md:w-1/2 p-2">
                     <h2 className="font-bold text-2xl mt-3 text-center text-[#17396d]">Register</h2>
                     <p className="mt-3 text-center text-[#17396d]">
-                    Welcome to Clothify Store
+                        Welcome to Clothify Store
                     </p>
 
                     <form action="" className="flex flex-col p-3 gap-4" noValidate>
