@@ -1,7 +1,7 @@
 import React from "react";
 import itemImg from "../assets/Items/item_img.webp";
 
-function ItemCard({imageUrl, name, price, quantity}) {
+function ItemCard({imageUrl, name, price, quantity, description}) {
 
   return (
     <div>
@@ -20,6 +20,7 @@ function ItemCard({imageUrl, name, price, quantity}) {
         <div className="mt-2">
           <div className="flex flex-col">
             <p className="font-semibold text-xl">{name}</p>
+            <p className="text-sm">{description}</p>
             <p className="mt-2">Rs.{price}</p>
             <p>Qty : {quantity}</p>
           </div>

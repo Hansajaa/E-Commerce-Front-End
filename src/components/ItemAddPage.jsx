@@ -34,7 +34,7 @@ function ItemAddPage(props) {
         .then(function(response){
             console.log(response);
             clearForm();
-            setImageUrl("");
+            // setImageUrl("");
             setSubmitButtonDisable(false);
             successAlert(response);
         })
@@ -161,11 +161,11 @@ function ItemAddPage(props) {
                     <div className="flex flex-row w-full items-center justify-center">
                         <input {
                             ...register("images")
-                        } type="file"  onChange={prepareImageUrl}/>
+                        } type="file" onChange={prepareImageUrl}/>
                     </div>
                     
                     <div className="flex flex-row mt-5 w-80">
-                        <img src={imageUrl}/>
+                        {imageUrl !== "" ? <img src={imageUrl}/>:null}
                     </div>
                     
                 </div>
