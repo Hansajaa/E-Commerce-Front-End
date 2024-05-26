@@ -6,20 +6,7 @@ import Slider from "react-slick";
 import ItemCard from '../molecules/ItemCard';
 import axios from 'axios';
 
-function CardCarousel({ProductApiUrl}) {
-
-    const [products, setProducts] = useState([]);
-
-
-    useEffect(()=>{
-        axios.get(`${ProductApiUrl}`)
-        .then((res)=>{
-            setProducts(res.data);
-        })
-        .catch((err)=>{
-            console.error(err);
-        })
-    },[ProductApiUrl])
+function CardCarousel({products}) {
 
     var settings = {
         dots: true,
