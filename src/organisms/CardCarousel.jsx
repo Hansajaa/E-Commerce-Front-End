@@ -1,11 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import itemImg from '../assets/Items/item_img.jpg'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import ItemCard from '../molecules/ItemCard';
+import axios from 'axios';
 
-function CardCarousel() {
+function CardCarousel({ProductApiUrl}) {
+
+    const [products, setProducts] = useState([]);
+
+
+    useEffect(()=>{
+        axios.get(`${ProductApiUrl}`)
+        .then((res)=>{
+            setProducts(res.data);
+        })
+        .catch((err)=>{
+            console.error(err);
+        })
+    },[ProductApiUrl])
+
     var settings = {
         dots: true,
         infinite: true,
@@ -41,13 +56,14 @@ function CardCarousel() {
     };
 
     return (
+    
 
         <div className='w-full p-9'>
             <div className='mt-20'>
                 <Slider {...settings}>
-                    {data.map((d) => (
-                        <div key={d.name}>
-                            <ItemCard></ItemCard>
+                    {Array.isArray(products) && products.map((p) => (
+                        <div key={p.id}>
+                            <ItemCard imageUrl={p.imageUrl} name={p.name} price={p.price} quantity={p.quantity}></ItemCard>
                         </div>
                     ))}
                 </Slider>

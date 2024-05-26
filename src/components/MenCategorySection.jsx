@@ -1,11 +1,15 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import NavigationBar from '../common/NavigationBar'
 import CardCarousel from '../organisms/CardCarousel';
 import Footer from '../common/FooterSection'
+import axios from 'axios';
 
 function MenCategorySection(props) {
 
+    const menProductApiUrl = "http://localhost:8081/api/v1/product/getProducts/men";
+    
     const [dropdownState, setDropdownState] = useState(false);
+    
 
     const handleClick = () => {
         setDropdownState(!dropdownState);
@@ -20,14 +24,15 @@ function MenCategorySection(props) {
     }
 
     return (
-        <div>
+        <React.Fragment>
             
             <NavigationBar dropdownState={dropdownState}></NavigationBar>
 
             <div onClick={handleClick}>
                 <p className='text-white translate-y-32 ml-20 font-bold text-xl'>Men's</p>
-                <CardCarousel></CardCarousel>
-                <CardCarousel></CardCarousel>
+                
+                <CardCarousel ProductApiUrl={menProductApiUrl}/>
+                <CardCarousel ProductApiUrl={menProductApiUrl}/>
 
                 <div className='text-center'>
                     <h1 className='text-white font-semibold  text-xl'>
@@ -51,7 +56,7 @@ function MenCategorySection(props) {
                     <Footer></Footer>
                 </div>
             </div>
-        </div>
+        </React.Fragment>
     );
 }
 
