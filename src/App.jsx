@@ -8,6 +8,7 @@ import WomenCategorySection from './components/WomenCategorySection'
 import ItemAddPage from './components/ItemAddPage'
 import BabyCategorySection from './components/BabyCategorySection'
 import KidsCategorySection from './components/KidsCategorySection'
+import ItemsPage from './components/ItemsPage'
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
           <Route path='addItem' element={<ItemAddPage></ItemAddPage>}></Route>
           <Route path='babyCategory' element={<BabyCategorySection></BabyCategorySection>}></Route>
           <Route path='kidsCategory' element={<KidsCategorySection></KidsCategorySection>}></Route>
+          <Route path='items' element={<ItemsPage></ItemsPage>}></Route>
       </Routes>
     </BrowserRouter>
   )
