@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Table } from "flowbite-react";
-import ModalPopup from "../organisms/ModalPopup";
+import ModalPopup from "./UpdateModal";
 import { AiOutlineEdit } from "react-icons/ai";
 import { AiOutlineDelete } from "react-icons/ai";
+import DeleteModal from "./DeleteModal";
 
-function ItemsTable({ products, handleModal }) {
+function ItemsTable({ products, handleUpdateModal, handleDeleteModal }) {
+  
   const [product, setProduct] = useState({
     id: 0,
     name: "",
@@ -14,10 +16,15 @@ function ItemsTable({ products, handleModal }) {
     quantity: 0,
   });
 
-  const handleModalState = (selectedProduct) => {
+  const handleUpdateModalState = (selectedProduct) => {
     setProduct(selectedProduct);
-    handleModal();
+    handleUpdateModal();
   };
+
+  const handleDeleteModalState = (selectedProduct) => {
+    setProduct(selectedProduct);
+    handleDeleteModal();
+  }
 
   return (
     <div>
@@ -67,7 +74,7 @@ function ItemsTable({ products, handleModal }) {
                   </Table.Cell>
                   <Table.Cell
                     onClick={() => {
-                      handleModalState(p);
+                      handleUpdateModalState(p);
                     }}
                   >
                     <a
@@ -78,7 +85,7 @@ function ItemsTable({ products, handleModal }) {
                     </a>
                   </Table.Cell>
 
-                  <Table.Cell>
+                  <Table.Cell onClick={()=>{handleDeleteModalState(p)}}>
                     <a
                       href="#"
                       className="text-cyan-600 hover:underline dark:text-cyan-500"
@@ -93,7 +100,10 @@ function ItemsTable({ products, handleModal }) {
       </div>
 
       {/* Product Update Modal */}
-      <ModalPopup handleModal={handleModal} product={product}></ModalPopup>
+      <ModalPopup handleUpdateModal={handleUpdateModal} product={product}></ModalPopup>
+
+      {/* Product Delete Modal */}
+      <DeleteModal handleDeleteModal={handleDeleteModal} product={product}></DeleteModal>
     </div>
   );
 }
