@@ -4,6 +4,7 @@ import ModalPopup from "./UpdateModal";
 import { AiOutlineEdit } from "react-icons/ai";
 import { AiOutlineDelete } from "react-icons/ai";
 import DeleteModal from "./DeleteModal";
+import UpdateModal from "./UpdateModal";
 
 function ItemsTable({ products, handleUpdateModal, handleDeleteModal }) {
   
@@ -100,7 +101,7 @@ function ItemsTable({ products, handleUpdateModal, handleDeleteModal }) {
       </div>
 
       {/* Product Update Modal */}
-      <ModalPopup handleUpdateModal={handleUpdateModal} product={product}></ModalPopup>
+      <UpdateModal handleUpdateModal={handleUpdateModal}  product={product}></UpdateModal>
 
       {/* Product Delete Modal */}
       <DeleteModal handleDeleteModal={handleDeleteModal} product={product}></DeleteModal>
