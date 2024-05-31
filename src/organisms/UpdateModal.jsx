@@ -108,7 +108,7 @@ function UpdateModal({ handleUpdateModal, product }) {
                     onChange={handleInputChange}
                   />
 
-                  <label htmlFor="name">Price</label>
+                  <label htmlFor="name">Price (Rs.)</label>
                   <input
                     className="w-full px-10 py-2 text-black rounded-md"
                     value={formData.price}

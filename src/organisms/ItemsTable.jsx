@@ -71,7 +71,7 @@ function ItemsTable({ products, handleUpdateModal, handleDeleteModal }) {
                     Rs.{p.price}
                   </Table.Cell>
                   <Table.Cell className="text-white font-extralight">
-                    {p.price}
+                    {p.quantity}
                   </Table.Cell>
                   <Table.Cell
                     onClick={() => {
