@@ -52,6 +52,9 @@ function UpdateModal({ handleUpdateModal, product }) {
            handleUpdateModal();
            loadItemTable();
            successAlert(res.data);
+        }else{
+          handleUpdateModal();
+          warningAlert();
         }
     })
     .catch((err)=>{
@@ -67,6 +70,14 @@ function UpdateModal({ handleUpdateModal, product }) {
     });
   }
 
+  const warningAlert = () => {
+    Swal.fire({
+      title: "Not Updated!",
+      text: `${formData.name} is Not Updated.`,
+      icon: "warning"
+    });
+  }
+
   return (
     <div>
       {isUpdateOpenModal && (
@@ -77,7 +88,7 @@ function UpdateModal({ handleUpdateModal, product }) {
             </button>
             <div className="bg-[#15616D] rounded-xl px-20 py-7 flex flex-col gap-5 items-center mx-4">
               <h4 className="text-2xl font-bold -translate-y-3">
-                Update product
+                Update product ({product.id})
               </h4>
               <div className="flex flex-row">
                 <form className="flex flex-col gap-3">
