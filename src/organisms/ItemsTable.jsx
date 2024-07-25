@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import {useState} from 'react'
 import { Table } from "flowbite-react";
 import ModalPopup from "./UpdateModal";
 import { AiOutlineEdit } from "react-icons/ai";
@@ -82,7 +82,7 @@ function ItemsTable({ products, handleUpdateModal, handleDeleteModal }) {
                       href="#"
                       className=" text-cyan-600 hover:underline dark:text-cyan-500"
                     >
-                      <AiOutlineEdit></AiOutlineEdit>
+                      <AiOutlineEdit size={20}></AiOutlineEdit>
                     </a>
                   </Table.Cell>
 
@@ -91,7 +91,7 @@ function ItemsTable({ products, handleUpdateModal, handleDeleteModal }) {
                       href="#"
                       className="text-cyan-600 hover:underline dark:text-cyan-500"
                     >
-                      <AiOutlineDelete></AiOutlineDelete>
+                      <AiOutlineDelete size={20}></AiOutlineDelete>
                     </a>
                   </Table.Cell>
                 </Table.Row>
