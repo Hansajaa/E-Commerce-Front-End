@@ -22,10 +22,10 @@ function ItemAddPage(props) {
         reset();
     }
 
-    const handleClick = (data) => {
+    const handleClick = async (data) => {
         setSubmitButtonDisable(true);
         console.log(data);
-        const formData = prepareFormData(data);
+        const formData =  await prepareFormData(data);
         addProduct(formData);
     }
 
@@ -82,6 +82,7 @@ function ItemAddPage(props) {
                 {/* add product form */}
                 <div className='md:w-1/2 w-full flex-col'>
                     <form className='flex flex-col p-10 gap-2 justify-self-end'>
+                        {/* name input */}
                         <input {...register(
                             "name",
                             {
@@ -93,6 +94,7 @@ function ItemAddPage(props) {
                         )} placeholder='product Name' className='rounded-lg p-2 mt-8' type="text" />
                         <span className="text-xs text-[white]">{errors.name?.message}</span>
                         
+                        {/* Description Input */}
                         <input {...register(
                             "description",
                             {
@@ -101,9 +103,10 @@ function ItemAddPage(props) {
                                     message:"* Description is required"
                                 }
                             }
-                        )} placeholder='Product Description' className='rounded-lg p-2 mt-8' type="text" />
+                        )} placeholder='Product Description' className='rounded-lg p-2 mt-4' type="text" />
                         <span className="text-xs text-[white]">{errors.description?.message}</span>
                         
+                        {/* Quantity Input */}
                         <input {...register(
                             "quantity",
                             {
@@ -116,9 +119,10 @@ function ItemAddPage(props) {
                                     message:"Invalid Quantity"
                                 }
                             }
-                        )} placeholder='Quantity' className='rounded-lg p-2 mt-8' type="number" />
+                        )} placeholder='Quantity' className='rounded-lg p-2 mt-4' type="number" />
                         <span className="text-xs text-[white]">{errors.quantity?.message}</span>
                         
+                        {/* Price Input */}
                         <input {...register(
                             "price",
                             {
@@ -131,10 +135,10 @@ function ItemAddPage(props) {
                                     message:"Invalid price"
                                 }
                             }
-                        )} placeholder='Price' className='rounded-lg p-2 mt-8' type="text" />
+                        )} placeholder='Price' className='rounded-lg p-2 mt-4' type="text" />
                         <span className="text-xs text-[white]">{errors.price?.message}</span>
                         
-                        <input {...register(
+                        {/* <input {...register(
                             "category",
                             {
                                 required: {
@@ -143,7 +147,24 @@ function ItemAddPage(props) {
                                 }
                             }
                         )} placeholder='Category' className='rounded-lg p-2 mt-8' type="text" />
+                        <span className="text-xs text-[white]">{errors.category?.message}</span> */}
+
+                        {/* Catogory Dropdown */}
+                        <select name="catogory" className='rounded-lg mt-4' {...register("category", 
+                            {
+                                required:{
+                                    value:true,
+                                    message:"* Category is required"
+                                }
+                            })}>
+                            <option value="" selected disabled hidden>Category Choose here</option>
+                            <option value="Women">Women</option>
+                            <option value="Men">Men</option>
+                            <option value="Kids">Kids</option>
+                            <option value="Baby">Baby</option>
+                        </select>
                         <span className="text-xs text-[white]">{errors.category?.message}</span>
+
                     </form>
                     <div className='flex p-10 justify-end -mt-10 gap-5'>
                         <div className="flex-col">

@@ -1,14 +1,14 @@
 import './App.css'
-import HomePage from './components/HomePage'
-import LoginPage from './components/LoginPage'
-import MenCategorySection from './components/MenCategorySection'
-import RegisterPage from './components/RegisterPage'
+import HomePage from './pages/HomePage'
+import LoginPage from './pages/LoginPage'
+import MenCategorySection from './pages/MenCategorySection'
+import RegisterPage from './pages/RegisterPage'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import WomenCategorySection from './components/WomenCategorySection'
-import ItemAddPage from './components/ItemAddPage'
-import BabyCategorySection from './components/BabyCategorySection'
-import KidsCategorySection from './components/KidsCategorySection'
-import ItemsPage from './components/ItemsPage'
+import WomenCategorySection from './pages/WomenCategorySection'
+import ItemAddPage from './pages/ItemAddPage'
+import BabyCategorySection from './pages/BabyCategorySection'
+import KidsCategorySection from './pages/KidsCategorySection'
+import ItemsPage from './pages/ItemsPage'
 
 function App() {
 
