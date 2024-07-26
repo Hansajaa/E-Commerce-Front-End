@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import itemImg from "../assets/Items/item_img.webp";
+import addCart from '../assets/Items/add-cart.png'
+import ProductRatings from "../atoms/ProductRatings";
+import notFavourite from '../assets/Items/favourite1.png'
+import favourite from '../assets/Items/favourite2.png'
 
-function ItemCard({imageUrl, name, price, quantity, description}) {
+function ItemCard({ imageUrl, name, price, quantity, description }) {
+
+  const [isFavourite, setFavourite] = useState(false);
 
   return (
     <div>
@@ -18,15 +24,30 @@ function ItemCard({imageUrl, name, price, quantity, description}) {
         ></iframe>
 
         <div className="mt-2">
-          <div className="flex flex-col">
-            <p className="font-semibold text-xl">{name}</p>
-            <p className="text-sm">{description}</p>
-            <p className="mt-2">Rs.{price}</p>
-            <p>Qty : {quantity}</p>
+          <div className="flex flex-row justify-between">
+            <div className="flex flex-col">
+              <p className="font-semibold text-xl">Rs.{price}</p>
+              <p className="mt-2">{name}</p>
+              {
+                  quantity > 0 ? <p className="mt-2 text-green-400">In Stock</p> :
+                                <p className="mt-2 text-red-600">Out Of Stock</p>
+              }
+              <ProductRatings/>
+              {/* <p className="text-sm">{description}</p> */}
+            </div>
+
+            {/* <div className="flex flex-col items-end text-right -mt-2">
+              <p>Qty : {quantity}</p>
+            </div> */}
           </div>
-          <div className="flex flex-col my-3">
-            <button className="bg-[#0e4047] px-6 py-1 rounded-lg hover:scale-105 duration-500 ">
-              Add
+          <div className="flex justify-end my-3 gap-2">
+            <button className="w-8" onClick={()=>{setFavourite(!isFavourite)}}>
+                {!isFavourite ? <img src={notFavourite} alt="isFavourite" />:
+                                <img src={favourite} alt="isFavourite" />}
+                
+            </button>
+            <button className="w-8">
+                <img src={addCart} alt="add to cart" />
             </button>
           </div>
         </div>
