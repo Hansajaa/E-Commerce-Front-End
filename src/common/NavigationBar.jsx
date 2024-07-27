@@ -47,10 +47,9 @@ function NavigationBar(dropdownState) {
           </a>
           <div className="flex items-center md:order-2 space-x-3 md:space-x-2 rtl:space-x-reverse">
             {/* Cart Button */}
-            <button
-              type="button"
+            <Link
+              to={"/cart"}
               className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-[#15616D] dark:focus:ring-gray-600"
-              id=""
               aria-expanded="false"
               data-dropdown-toggle="cart"
               data-dropdown-placement="bottom"
@@ -63,7 +62,7 @@ function NavigationBar(dropdownState) {
                 src="https://img.icons8.com/color/48/shopping-cart--v1.png"
                 alt="shopping-cart--v1"
               />
-            </button>
+            </Link>
 
             <button
               type="button"
