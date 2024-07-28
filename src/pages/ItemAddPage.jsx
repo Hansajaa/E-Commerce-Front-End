@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AdminNavigationBar from '../common/AdminNavigationBar';
 import { Label, FileInput } from 'flowbite-react';
 import { useForm } from 'react-hook-form';
@@ -7,6 +7,22 @@ import Swal from 'sweetalert2';
 import { Spinner } from 'flowbite-react';
 
 function ItemAddPage(props) {
+
+    const newIdApi = 'http://localhost:8081/api/v1/product/getNewProductID';
+
+    useEffect(()=>{
+        getNewProductID();
+    },[])
+
+    const [newID, setNewID] = useState();
+
+    const getNewProductID = () => {
+        axios.get(newIdApi)
+             .then(res => {
+                setNewID(res.data);
+             })
+             .catch(err => console.log(err));
+    }
 
     const [dropDownState, setDropDownState] = useState(false);
     const [imageUrl, setImageUrl] = useState("");
@@ -37,6 +53,7 @@ function ItemAddPage(props) {
             // setImageUrl("");
             setSubmitButtonDisable(false);
             successAlert(response);
+            getNewProductID();
         })
         .catch(function(err){
             console.log(err);
@@ -81,7 +98,11 @@ function ItemAddPage(props) {
 
                 {/* add product form */}
                 <div className='md:w-1/2 w-full flex-col'>
+                    
+
                     <form className='flex flex-col p-10 gap-2 justify-self-end'>
+                    <h2 className='text-white font-semibold text-3xl'>Product ID : {newID}</h2>
+
                         {/* name input */}
                         <input {...register(
                             "name",
