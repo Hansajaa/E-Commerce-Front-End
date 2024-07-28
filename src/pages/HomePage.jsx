@@ -36,6 +36,7 @@ function HomePage() {
     useEffect(()=>{
         axios.get(`${menProductApiUrl}`)
         .then((res)=>{
+            console.log(res.data);
             setProducts(res.data);
         })
         .catch((err)=>{
