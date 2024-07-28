@@ -4,6 +4,7 @@ import Navigation from '../common/NavigationBar'
 import {Carousel} from 'flowbite-react'
 import bannerImg1 from '../assets/home_page_asserts/banner1.webp'
 import bannerImg2 from '../assets/home_page_asserts/banner2.webp'
+import bannerImg3 from '../assets/home_page_asserts/banner3.webp'
 import verifyImg from '../assets/home_page_asserts/verify.png'
 import satisfiedImg from '../assets/home_page_asserts/satified.png'
 import newArrivalImg from '../assets/home_page_asserts/new arrival.png'
@@ -35,6 +36,7 @@ function HomePage() {
     useEffect(()=>{
         axios.get(`${menProductApiUrl}`)
         .then((res)=>{
+            console.log(res.data);
             setProducts(res.data);
         })
         .catch((err)=>{
@@ -54,6 +56,9 @@ function HomePage() {
                     </div>
                     <div className="flex h-full items-center justify-center">
                         <img  src={bannerImg2} alt="" srcset="" /> 2
+                    </div>
+                    <div className="flex h-full items-center justify-center">
+                        <img  src={bannerImg3} alt="" srcset="" /> 2
                     </div>
                 </Carousel>
 
