@@ -50,7 +50,7 @@ function CardCarousel({products}) {
                 <Slider {...settings}>
                     {Array.isArray(products) && products.map((p) => (
                         <div key={p.id}>
-                            <ItemCard imageUrl={p.imageUrl} name={p.name} price={p.price} quantity={p.quantity} description={p.description}></ItemCard>
+                            <ItemCard product={p} imageUrl={p.imageUrl} name={p.name} price={p.price} quantity={p.quantity} description={p.description}></ItemCard>
                         </div>
                     ))}
                 </Slider>

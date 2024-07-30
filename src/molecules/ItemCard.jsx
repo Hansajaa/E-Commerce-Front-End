@@ -4,12 +4,25 @@ import addCart from '../assets/Items/add-cart.png'
 import ProductRatings from "../atoms/ProductRatings";
 import notFavourite from '../assets/Items/favourite1.png'
 import favourite from '../assets/Items/favourite2.png'
+import {useDispatch} from 'react-redux'
+import {addItems} from '../feature/cart/cartSlice'
+import CartItemAddedAlert from "../atoms/Alerts/CartItemAddedAlert";
 
-function ItemCard({ imageUrl, name, price, quantity, description }) {
+function ItemCard({ product, imageUrl, name, price, quantity, description }) {
 
   const [isFavourite, setFavourite] = useState(false);
+  const [isAdded, setAdded] = useState(false);
+  const dispatch = useDispatch();
+
+
+  const handleCart = () => {
+      setAdded(true);
+      dispatch(addItems(product));
+      setTimeout(()=>{setAdded(false)}, 5000);
+  }
 
   return (
+    <>
     <div>
       <div className="block rounded-lg p-3 shadow-sm shadow-indigo-100 mt-10 m-4 text-white">
         {/* <img
@@ -46,13 +59,16 @@ function ItemCard({ imageUrl, name, price, quantity, description }) {
                                 <img src={favourite} alt="isFavourite" />}
                 
             </button>
-            <button className="w-8">
+            <button className="w-8" onClick={handleCart}>
                 <img src={addCart} alt="add to cart" />
             </button>
           </div>
         </div>
       </div>
     </div>
+
+    {isAdded ? <CartItemAddedAlert product={product}/> : null}
+    </>
   );
 }
 
