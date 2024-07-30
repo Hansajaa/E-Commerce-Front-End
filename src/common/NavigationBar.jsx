@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import user_icon from "../assets/navigation_bar_asserts/user_img.png";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function NavigationBar(dropdownState) {
   const [isUserMenuOpen, setUserMenu] = useState(false);
   const [isMainMenuOpen, setMainMenu] = useState(false);
   const [isCategoryMenuOpen, setCategoryMenuOpen] = useState(false);
+  const cartItemCount = useSelector((state) => state.cartItemCount);
 
   function handleMainMenu() {
     setMainMenu(!isMainMenuOpen);
@@ -62,6 +64,7 @@ function NavigationBar(dropdownState) {
                 src="https://img.icons8.com/color/48/shopping-cart--v1.png"
                 alt="shopping-cart--v1"
               />
+              <span className="bg-blue-50 rounded-full h-5 w-5 text-center">{cartItemCount}</span>
             </Link>
 
             <button
