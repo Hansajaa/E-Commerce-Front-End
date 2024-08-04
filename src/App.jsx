@@ -10,6 +10,7 @@ import BabyCategorySection from './pages/BabyCategorySection'
 import KidsCategorySection from './pages/KidsCategorySection'
 import ItemsPage from './pages/ItemsPage'
 import CartPage from './pages/CartPage'
+import CheckoutPage from './pages/CheckoutPage'
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
           <Route path='kidsCategory' element={<KidsCategorySection></KidsCategorySection>}></Route>
           <Route path='items' element={<ItemsPage></ItemsPage>}></Route>
           <Route path='cart' element={<CartPage></CartPage>}></Route>
+          <Route path='checkout' element={<CheckoutPage></CheckoutPage>}></Route>
       </Routes>
     </BrowserRouter>
   )
